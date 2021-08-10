@@ -1,0 +1,22 @@
+php_flag magic_quotes_gpc Off
+#php_value error_reporting 0
+#php_value display_errors 0
+
+
+RewriteEngine On
+Options -Indexes
+
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php [L,QSA]
+
+
+Order Deny,Allow
+Allow from all
+<FilesMatch ^.*\.php$>
+    Deny from all
+</FilesMatch>
+<Files index.php>
+    Allow from all
+</Files>
