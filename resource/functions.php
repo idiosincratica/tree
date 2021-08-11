@@ -41,9 +41,9 @@ function logout(){
 }
 
 function prepare_in(&$arr,$str){
-	/*returns a string for use in PDO::prepare() formatted like this :[somethig]_[counter] and
+	/*returns a string for use in PDO::prepare() which is formatted like this :<pattern>_<counter> and
 	a prepared data array. Takes data array and arbitrary string to be used as pattern in
-	"variables" names
+	"variable" names
 	*/
 
 	$count = count($arr);
