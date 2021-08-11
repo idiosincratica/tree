@@ -13,14 +13,13 @@ function prep($data){
 function restricted_access(){
 	if(empty($_SESSION['is_admin'])){
 		throw new Error404();
-		exit;
 	}
 }
 
 function render_template($content=false, $path=TEMPLATE_PATH){
 	ob_start();
 	require $path;
-    return ob_get_clean();
+	return ob_get_clean();
 }
 
 function logout(){
@@ -41,12 +40,8 @@ function logout(){
 	header("Location: $location");
 }
 
-function isCLI(){
-    return (php_sapi_name() === 'cli');
-}
-
 function prepare_in(&$arr,$str){
-	/*returns a string for use PDO::prepare() formatted like this :[somethig]_[counter] and
+	/*returns a string for use in PDO::prepare() formatted like this :[somethig]_[counter] and
 	a prepared data array. Takes data array and arbitrary string to be used as pattern in
 	"variables" names
 	*/
@@ -62,37 +57,4 @@ function prepare_in(&$arr,$str){
 		$i++;
 	}
 	return array('placeholders'=>implode(',',$placeholders),'values'=>$values);
-}
-
-function ex($a,$string='',$b='auto'){  //посмотреть что лежит в переменной
-	echo '<pre style="border:1px solid #fd5; background:rgba(255,200,50,.2); padding:7px; overflow-x:auto;">';
-	if($string)
-		echo $string.' = ';
-	if($b=='print_r'){
-		print_r($a);
-		}
-	elseif($b=='echo'){
-		echo $a;
-	}
-	elseif($b=='var_dump'){
-		var_dump($a);
-	}
-	elseif($b=='auto'){
-		if(gettype($a)=='array'){
-			print_r($a);
-		}
-		elseif((gettype($a)=='null') or (gettype($a)=='boolean')){
-			var_dump($a);
-		}
-		elseif((gettype($a)=='string') or (gettype($a)=='integer')){
-			echo $a;
-		}
-		else{
-			var_dump($a);
-		}
-	}
-	elseif($b=='my_flag'){
-		echo '--MY FLAG--';
-	}
-	echo "</pre>";
 }

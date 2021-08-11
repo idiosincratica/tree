@@ -58,6 +58,7 @@ class TreeModel{
 
         $wp = $with_parentage ? ", (select count(*) from tree t2 where t2.parent_id=t1.id) as children_count" : '';
         $query = "select id, name, description, parent_id$wp from tree t1 where parent_id";
+
         if(is_null($parent_id)){
             $sth = $dbh->query($query.' is null');
             $res = $sth->fetchAll();
@@ -69,11 +70,13 @@ class TreeModel{
             ]);
             $res = $sth->fetchAll();
         }
+
         if($with_parentage){
             foreach($res as &$node){
                 $node['is_parent'] = (bool)$node['children_count'];
             }
         }
+        
         return $res;
     }
 
