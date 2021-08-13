@@ -14,7 +14,7 @@ class TreeModel{
         restricted_access();
         $dbh = db::get();
         
-        $parent_id = $data['parent_id'] ?? NULL;
+        $parent_id = isset($data['parent_id']) ? $data['parent_id'] : NULL;
         $query = 'insert into tree set name=:name, description=:description, parent_id=:parent_id';
         $sth = $dbh->prepare($query);
         $sth->execute([
@@ -29,7 +29,7 @@ class TreeModel{
         restricted_access();
         $dbh = db::get();
         
-        $parent_id = $data['parent_id'] ?? NULL;
+        $parent_id = isset($data['parent_id']) ? $data['parent_id'] : NULL;
         $query = 'update tree set name=:name, description=:description, parent_id=:parent_id where id=:id';
         $sth = $dbh->prepare($query);
         $sth->execute([

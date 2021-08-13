@@ -22,19 +22,19 @@ call_user_func(function(){
     }
     catch(Error404 $e){
         header('HTTP/1.1 404 Not Found');
-        if(!str_starts_with(VIRTUAL_PATH, '/api/')){
+        if(!string_starts_with(VIRTUAL_PATH, '/api/')){
             echo render_template('<div class="page-error">Ошибка 404<br>Страница не найдена</div>');
         }
     }
     catch(Error400 $e){
         header('HTTP/1.1 400 Bad Request');
-        if(!str_starts_with(VIRTUAL_PATH, '/api/')){
+        if(!string_starts_with(VIRTUAL_PATH, '/api/')){
             echo render_template('<div class="page-error">Ошибка 400<br>Плохой запрос</div>');
         }
     }
     catch(Error500 $e){
         header('HTTP/1.1 500 Internal Server Error');
-        if(!str_starts_with(VIRTUAL_PATH, '/api/')){
+        if(!string_starts_with(VIRTUAL_PATH, '/api/')){
             echo render_template('<div class="page-error">Ошибка 500<br>Что-то пошло не так</div>');
         }
     }
@@ -43,7 +43,7 @@ call_user_func(function(){
             throw $e;
         }
         header('HTTP/1.1 500 Internal Server Error');
-        if(!str_starts_with(VIRTUAL_PATH, '/api/')){
+        if(!string_starts_with(VIRTUAL_PATH, '/api/')){
             echo render_template('<div class="page-error">Ошибка 500<br>Что-то пошло не так</div>');
         }
     }

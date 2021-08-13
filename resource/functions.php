@@ -58,3 +58,7 @@ function prepare_in(&$arr,$str){
 	}
 	return array('placeholders'=>implode(',',$placeholders),'values'=>$values);
 }
+
+function string_starts_with($string, $sub){
+	return substr($string, 0, strlen($sub)) === $sub;
+}
